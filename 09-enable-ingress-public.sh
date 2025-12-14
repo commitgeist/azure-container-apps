@@ -1,7 +1,9 @@
-RESOURCE_GROUP_NAME="treinamento_container_apps"
-LOCATION="eastus"
-CONTAINERAPPS_NAME="gotobizcontainerapps"
+#!/bin/bash
+# Script 09: Habilitar ingress público
 
+source ./config.sh
+
+echo "Habilitando ingress público..."
 az containerapp ingress enable \
   --name $CONTAINERAPPS_NAME \
   --resource-group $RESOURCE_GROUP_NAME \
@@ -9,4 +11,9 @@ az containerapp ingress enable \
   --target-port 80 \
   --transport auto
 
-az containerapp show  --name $CONTAINERAPPS_NAME   --resource-group $RESOURCE_GROUP_NAME  --query properties.configuration.ingress.fqdn   --output tsv
+echo "URL pública do Container App:"
+az containerapp show \
+  --name $CONTAINERAPPS_NAME \
+  --resource-group $RESOURCE_GROUP_NAME \
+  --query properties.configuration.ingress.fqdn \
+  --output tsv

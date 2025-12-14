@@ -1,5 +1,7 @@
-RESOURCE_GROUP_NAME="treinamento_container_apps"
-LOCATION="eastus"
+#!/bin/bash
+# Script 05: Listar Container Apps existentes
 
+source ./config.sh
 
-az containerapp list -g $RESOURCE_GROUP_NAME -o table -l $LOCATION
+echo "Listando Container Apps no Resource Group..."
+az containerapp list -g $RESOURCE_GROUP_NAME -o table
