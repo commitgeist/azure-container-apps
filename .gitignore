@@ -1,0 +1,23 @@
+# Azure
+*.azureauth
+.azure/
+
+# Bicep
+*.bicep.json
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp

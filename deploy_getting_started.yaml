@@ -1,0 +1,28 @@
+location: East US
+name: getsttargingcontainer
+resourceGroup: treinamento_container_apps
+type: Microsoft.App/containerApps
+properties:
+  configuration:
+    activeRevisionsMode: Single
+    ingress:
+      external: true
+      targetPort: 3000
+      transport: Auto
+      traffic:
+        - latestRevision: true
+          weight: 100
+    registries:
+      - server: treinamentocontainerapps.azurecr.io
+        identity: system-environment
+  template:
+    # revisionSuffix: containerappsnginx-v2
+    containers:
+      - name: getsttargingcontainer
+        image: treinamentocontainerapps.azurecr.io/getting-started:v2
+        resources:
+          cpu: 0.5
+          memory: 1Gi
+    scale:
+      minReplicas: 1
+      maxReplicas: 1

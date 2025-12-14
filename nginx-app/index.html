@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azure Container Apps | Visão Geral</title>
+
+  <!-- Tailwind CDN (demo / documentação técnica) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonte Fluent-like -->
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            azure: {
+              primary: '#0078D4',
+              secondary: '#005A9E',
+              light: '#EFF6FC',
+              dark: '#0F172A'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; }
+  </style>
+</head>
+<body class="dark bg-slate-950 text-slate-200 transition-colors duration-300">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-sky-600/25 via-blue-500/15 to-transparent"></div>
+    <div class="relative max-w-7xl mx-auto px-6 py-28">
+      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+        Azure Container Apps
+      </h1>
+      <p class="max-w-2xl text-lg text-slate-300 mb-10">
+        Plataforma serverless para execução de containers, abstraindo completamente a complexidade operacional do Kubernetes,
+        sem abrir mão de escala, observabilidade e integração nativa com Azure.
+      </p>
+      <div class="flex gap-4">
+        <a href="#overview" class="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 transition font-semibold">
+          Entender o serviço
+        </a>
+        <a href="#arquitetura" class="px-6 py-3 rounded-xl border border-slate-700 hover:bg-slate-900 transition font-semibold">
+          Ver arquitetura
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section id="overview" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold mb-4">O que é o Azure Container Apps?</h2>
+        <p class="text-slate-300 leading-relaxed mb-4">
+          Azure Container Apps (ACA) é um serviço gerenciado que executa containers Docker sobre Kubernetes,
+          porém escondendo totalmente o cluster do usuário.
+        </p>
+        <p class="text-slate-400 leading-relaxed">
+          Você não gerencia nodes, pools, upgrades, CNI ou control plane. O foco passa a ser exclusivamente
+          a aplicação, seus eventos e sua escala.
+        </p>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+        <ul class="space-y-4">
+          <li class="flex gap-3">
+            <span class="text-sky-400 font-bold">•</span>
+            Execução baseada em eventos e requisições HTTP
+          </li>
+          <li class="flex gap-3">
+            <span class="text-sky-400 font-bold">•</span>
+            Escala automática (KEDA)
+          </li>
+          <li class="flex gap-3">
+            <span class="text-sky-400 font-bold">•</span>
+            Billing por vCPU, memória e tempo de execução
+          </li>
+          <li class="flex gap-3">
+            <span class="text-sky-400 font-bold">•</span>
+            Integração nativa com Log Analytics e Dapr
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARQUITETURA -->
+  <section id="arquitetura" class="bg-slate-900/60 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-20">
+      <h2 class="text-3xl font-bold mb-10">Arquitetura Conceitual</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+          <h3 class="font-semibold text-xl mb-3">Environment</h3>
+          <p class="text-slate-400">
+            Boundary lógico que agrupa Container Apps, redes, observabilidade
+            e componentes compartilhados como Dapr.
+          </p>
+        </div>
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+          <h3 class="font-semibold text-xl mb-3">Container App</h3>
+          <p class="text-slate-400">
+            Unidade de deploy. Define imagem, recursos, regras de escala,
+            ingress e variáveis de ambiente.
+          </p>
+        </div>
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+          <h3 class="font-semibold text-xl mb-3">Revisions</h3>
+          <p class="text-slate-400">
+            Modelo de versionamento imutável que permite blue/green,
+            canary e rollback controlado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUANDO USAR -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold mb-10">Quando usar (e quando evitar)</h2>
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="bg-sky-950/30 border border-sky-700 rounded-2xl p-8">
+        <h3 class="text-xl font-semibold mb-4 text-sky-400">Use Container Apps quando</h3>
+        <ul class="space-y-3 text-slate-300">
+          <li>• Microsserviços HTTP ou event-driven</li>
+          <li>• Workloads com tráfego variável</li>
+          <li>• Necessidade de escalar até zero</li>
+          <li>• Time não quer operar Kubernetes</li>
+        </ul>
+      </div>
+      <div class="bg-slate-900/40 border border-slate-700 rounded-2xl p-8">
+        <h3 class="text-xl font-semibold mb-4 text-sky-300">Evite Container Apps quando</h3>
+        <ul class="space-y-3 text-slate-300">
+          <li>• Controle fino de rede (CNI, Calico, Istio)</li>
+          <li>• Workloads stateful complexos</li>
+          <li>• Dependência de CRDs específicos</li>
+          <li>• Necessidade de acesso direto ao cluster</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARAÇÃO -->
+  <section class="bg-slate-900/60 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-20">
+      <h2 class="text-3xl font-bold mb-10">Comparação Rápida</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border border-slate-800 rounded-xl overflow-hidden">
+          <thead class="bg-slate-950">
+            <tr>
+              <th class="p-4">Característica</th>
+              <th class="p-4">Container Apps</th>
+              <th class="p-4">AKS</th>
+            </tr>
+          </thead>
+          <tbody class="bg-slate-900">
+            <tr class="border-t border-slate-800">
+              <td class="p-4">Gerenciamento do cluster</td>
+              <td class="p-4">Totalmente gerenciado</td>
+              <td class="p-4">Responsabilidade do cliente</td>
+            </tr>
+            <tr class="border-t border-slate-800">
+              <td class="p-4">Escala até zero</td>
+              <td class="p-4">Nativo</td>
+              <td class="p-4">Complexo</td>
+            </tr>
+            <tr class="border-t border-slate-800">
+              <td class="p-4">Modelo de custo</td>
+              <td class="p-4">Por execução</td>
+              <td class="p-4">Infra provisionada</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="max-w-7xl mx-auto px-6 py-12 text-center text-slate-500">
+    <p>
+      Azure Container Apps — abstração, escala e simplicidade.
+    </p>
+    <p class="mt-2 text-sm">
+      Conteúdo técnico • visão crítica • foco em arquitetura
+    </p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+location: East US
+name: gotobizcontainerapps
+resourceGroup: treinamento_container_apps
+type: Microsoft.App/containerApps
+properties:
+  configuration:
+    activeRevisionsMode: Multipe
+    ingress:
+      external: true
+      targetPort: 80 
+      transport: Auto
+      traffic:
+        - latestRevision: true
+          weight: 100
+    registries:
+      - server: treinamentocontainerapps.azurecr.io
+        identity: system-environment
+  template:
+    # revisionSuffix: containerappsnginx
+    containers:
+      - name: gotobizcontainerapps
+        image: treinamentocontainerapps.azurecr.io/containerapps_nginx:v2
+        resources:
+          cpu: 0.5
+          memory: 1Gi
+    scale:
+      minReplicas: 1
+      maxReplicas: 3
